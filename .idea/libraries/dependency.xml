@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="dependency">
+    <CLASSES>
+      <root url="file://E:/air/dependency" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://E:/air/dependency" />
+    </SOURCES>
+    <jarDirectory url="file://E:/air/dependency" recursive="false" />
+    <jarDirectory url="file://E:/air/dependency" recursive="false" type="SOURCES" />
+  </library>
+</component>
