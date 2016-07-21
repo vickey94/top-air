@@ -1,6 +1,6 @@
 package air.config;
 
-import org.aopalliance.reflect.Class;
+
 
 /**
  * Created by vickey on 2016/7/20.
