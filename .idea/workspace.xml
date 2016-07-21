@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac2881c8-100c-485f-b244-a602c5724a80" name="默认的" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/config/LOG.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/model/CanData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/model/Flight.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/model/PredictData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/model/Weather.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/run/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/run/Main2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/run/advDBcon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/util/TimeUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/util/ValidData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/top-air/air/util/WeatherUtil.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/air/config/Log.java" afterPath="$PROJECT_DIR$/src/air/config/Log.java" />
     </list>
@@ -50,8 +39,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/air/run/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5365854">
-              <caret line="237" column="17" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
+            <state vertical-scroll-proportion="-1.1936872">
+              <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
               <folding>
                 <marker date="1469084967314" expanded="true" signature="1633:1659" placeholder="SELECT * FRO... list_airtype" />
                 <marker date="1469084967314" expanded="true" signature="2014:2040" placeholder="SELECT * FRO... list_airport" />
@@ -80,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/src/air/config/LOG.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,9 +123,9 @@
         <option value="$PROJECT_DIR$/src/air/run/CanData.java" />
         <option value="$PROJECT_DIR$/src/air/run/Main2.java" />
         <option value="$PROJECT_DIR$/src/air/run/Main.java" />
-        <option value="$PROJECT_DIR$/src/air/config/LOG.java" />
         <option value="$PROJECT_DIR$/src/air/util/ValidData.java" />
         <option value="$PROJECT_DIR$/src/air/config/Log.java" />
+        <option value="$PROJECT_DIR$/src/air/config/LOG.java" />
       </list>
     </option>
   </component>
@@ -785,7 +774,7 @@
       <workItem from="1469080185927" duration="90000" />
       <workItem from="1469080979458" duration="3962000" />
       <workItem from="1469085078579" duration="1248000" />
-      <workItem from="1469086404437" duration="104000" />
+      <workItem from="1469086404437" duration="717000" />
     </task>
     <task id="LOCAL-00001" summary="add Modulus 常量">
       <created>1468980839161</created>
@@ -811,11 +800,17 @@
       <option name="project" value="LOCAL" />
       <updated>1469084190920</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="1">
+      <created>1469086532080</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1469086532080</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31463000" />
+    <option name="totallyTimeSpent" value="32076000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -828,7 +823,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1456" height="886" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278237" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -840,7 +835,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3140496" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="控制板" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21418338" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21418338" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45730028" sideWeight="0.4974293" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="设计师" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -906,7 +901,8 @@
     <MESSAGE value="源码" />
     <MESSAGE value="0722" />
     <MESSAGE value="大幅优化了读取时间，从数据读取所以文件改为直接从文件读取在数据读取，再从数据库查询。8W条记录耗费时间由1个小时缩短到3分钟之内。（之前速度慢在于多次打开，关闭数据库）&#10;存在问题是内存优化，目前13W所有记录一次读取，加上数据库读取内存消耗约为1G多，可以优化。" />
-    <option name="LAST_COMMIT_MESSAGE" value="大幅优化了读取时间，从数据读取所以文件改为直接从文件读取在数据读取，再从数据库查询。8W条记录耗费时间由1个小时缩短到3分钟之内。（之前速度慢在于多次打开，关闭数据库）&#10;存在问题是内存优化，目前13W所有记录一次读取，加上数据库读取内存消耗约为1G多，可以优化。" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1177,15 +1173,15 @@
     <entry file="file://$PROJECT_DIR$/src/air/config/LOG.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/air/run/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5365854">
-          <caret line="237" column="17" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
+        <state vertical-scroll-proportion="-1.1936872">
+          <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
           <folding>
             <marker date="1469084967314" expanded="true" signature="1633:1659" placeholder="SELECT * FRO... list_airtype" />
             <marker date="1469084967314" expanded="true" signature="2014:2040" placeholder="SELECT * FRO... list_airport" />
