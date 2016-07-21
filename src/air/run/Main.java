@@ -43,7 +43,7 @@ public class Main {
 
 
         /******* 写入文件 ********/
-        BufferedReader bfread = new BufferedReader(new FileReader("E:\\air\\SHA\\tb_train.csv"));
+        BufferedReader bfread = new BufferedReader(new FileReader("E:\\air\\SHA\\tb_flight.csv"));
 
         /******* 写入文件 ********/
         BufferedWriter bfwrite = new BufferedWriter(new FileWriter("E:\\air\\SHA\\flight-0721.csv"));
@@ -85,7 +85,7 @@ public class Main {
         while((line=bfread.readLine())!=null){
 
             String[] item = line.split(",");
-System.out.println( item[0]);
+            System.out.println( item[0]);
             flight = new Flight(Integer.parseInt(item[0]), item[1],
                     item[2], item[3],
                     item[4], item[5],
@@ -103,9 +103,9 @@ System.out.println( item[0]);
 
         /**************** 数据查询 *******************/
 
-       String sql = "SELECT * FROM tb_train";
+   /*    String sql = "SELECT * FROM tb_train";
         PreparedStatement pst = conn.prepareStatement(sql);// 准备执行语句
-        ResultSet result = pst.executeQuery(); //返回结果
+        ResultSet result = pst.executeQuery(); //返回结果*/
 
      //   Flight flight;  //一条航班数据
         Weather dep_weather = new Weather(); //出发城市天气
@@ -134,8 +134,8 @@ System.out.println( item[0]);
 
 
             //验证航班
-            if (ValidData.validData(flight)) {
-
+           if (ValidData.validData(flight)) {
+                 LOG.actTrianData++;
                 /****前序航班到港****/
 
                 int adv_delays = 0;  //默认前序航班到港延误为0

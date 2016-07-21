@@ -17,6 +17,11 @@ public class ValidData {
 		}
             LOG.opCar_O_Data++;
 
+		if(flight.getActDepTime().equals("")){
+			LOG.miss_ActTime++;
+			return false;
+		}
+
         String comment = flight.getComment();
 		String [] vali_comment ={"取消","未知","已備降","已排班","n/a","正在滑行","途中"};
 		for(String str : vali_comment){
@@ -41,7 +46,7 @@ public class ValidData {
             LOG.unusual_ActFlyTime++;
 			return false;
 		}
-		if(distKm/actFlyTime>20){
+		if((distKm/actFlyTime)>20){
             LOG.unusual_DistKm_ActFlyTime++;
 			return false;
 		}
