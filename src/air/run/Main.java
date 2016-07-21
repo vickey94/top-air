@@ -8,9 +8,7 @@ import air.model.Weather;
 import air.util.TimeUtil;
 import air.util.ValidData;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,8 +41,12 @@ public class Main {
     public static void main(String args[]) throws ClassNotFoundException,
             SQLException, IOException{
 
-        /******* 读取文件 ********/
-        BufferedWriter bfwrite = new BufferedWriter(new FileWriter("E:\\air\\SHA\\trainData_0720.csv"));
+
+        /******* 写入文件 ********/
+        BufferedReader bfread = new BufferedReader(new FileReader("E:\\air\\SHA\\tb_train.csv"));
+
+        /******* 写入文件 ********/
+        BufferedWriter bfwrite = new BufferedWriter(new FileWriter("E:\\air\\SHA\\flight-0721.csv"));
 
         /******* 连接数据库 ********/
         Class.forName(name);// 指定连接类型
@@ -75,17 +77,41 @@ public class Main {
         /************ 将List加载到CanData用于数据处理 **************/
         CanData canData = new CanData(AIRTYPE_List, AIRPORT_List);
 
+
+        Flight flight;  //一条航班数据
+        String line ;
+
+      //  bfread.readLine();
+        while((line=bfread.readLine())!=null){
+
+            String[] item = line.split(",");
+System.out.println( item[0]);
+            flight = new Flight(Integer.parseInt(item[0]), item[1],
+                    item[2], item[3],
+                    item[4], item[5],
+                    item[6], item[7],
+                    item[8], item[9],
+                    item[10], item[11],
+                    item[12], item[13],
+                    item[14], item[15],
+                    item[16], item[17],
+                    item[18], item[19],
+                    item[20], item[21],item[22]
+                   );
+            LOG.total++;
+
+
         /**************** 数据查询 *******************/
-        //String sql = "SELECT * FROM tb_flight";
-        String sql = "SELECT * FROM tb_train";
+
+       String sql = "SELECT * FROM tb_train";
         PreparedStatement pst = conn.prepareStatement(sql);// 准备执行语句
         ResultSet result = pst.executeQuery(); //返回结果
 
-        Flight flight;  //一条航班数据
+     //   Flight flight;  //一条航班数据
         Weather dep_weather = new Weather(); //出发城市天气
         Weather arr_weather = new Weather(); //到达城市天气
 
-        while (result.next()) {
+      /*   while (result.next()) {
             LOG.total++;
 
             flight = new Flight(result.getInt(1), result.getString(2),
@@ -100,6 +126,12 @@ public class Main {
                     result.getString(19), result.getString(20),
                     result.getString(21), result.getString(22),
                     result.getString(23));
+*/
+
+
+
+
+
 
             //验证航班
             if (ValidData.validData(flight)) {
@@ -210,7 +242,9 @@ public class Main {
             }//if
 
         }//while
-        pst.close();
+        bfread.close();
+
+     //   pst.close();
         conn.close();
         LOG log = new LOG();
         System.out.print(log.toString());
