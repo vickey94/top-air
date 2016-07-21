@@ -1,6 +1,6 @@
 package air.config;
 
-import org.aopalliance.reflect.Class;
+
 
 /**
  * Created by vickey on 2016/7/20.
@@ -21,6 +21,7 @@ public class LOG {
     public static int unusual_ActDepTime = 0;        //提前起飞太早
     public static int unusual_DistKm_ActFlyTime = 0; //飞行速度过快
     public static int unusual_ActFlyTime = 0;        //实际飞行时间为0
+
     //   private int incomplete_Data ;                //数据不完整
     public static int miss_Weather = 0;              //缺失两地天气
     public static int miss_DepWeather = 0;            //缺失出发城市天气
