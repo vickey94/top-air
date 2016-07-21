@@ -39,7 +39,7 @@ public class Main {
     public final static List<String> AIRPORT_List = new ArrayList<String>();
 
     public static void main(String args[]) throws ClassNotFoundException,
-            SQLException, IOException{
+            SQLException, IOException {
 
 
         /******* 写入文件 ********/
@@ -79,13 +79,13 @@ public class Main {
 
 
         Flight flight;  //一条航班数据
-        String line ;
+        String line;
 
-      //  bfread.readLine();
-        while((line=bfread.readLine())!=null){
+        //  bfread.readLine();
+        while ((line = bfread.readLine()) != null) {
 
             String[] item = line.split(",");
-            System.out.println( item[0]);
+            System.out.println(item[0]);
             flight = new Flight(Integer.parseInt(item[0]), item[1],
                     item[2], item[3],
                     item[4], item[5],
@@ -96,20 +96,20 @@ public class Main {
                     item[14], item[15],
                     item[16], item[17],
                     item[18], item[19],
-                    item[20], item[21],item[22]
-                   );
+                    item[20], item[21], item[22]
+            );
             LOG.total++;
 
 
-        /**************** 数据查询 *******************/
+            /**************** 数据查询 *******************/
 
    /*    String sql = "SELECT * FROM tb_train";
         PreparedStatement pst = conn.prepareStatement(sql);// 准备执行语句
         ResultSet result = pst.executeQuery(); //返回结果*/
 
-     //   Flight flight;  //一条航班数据
-        Weather dep_weather = new Weather(); //出发城市天气
-        Weather arr_weather = new Weather(); //到达城市天气
+            //   Flight flight;  //一条航班数据
+            Weather dep_weather = new Weather(); //出发城市天气
+            Weather arr_weather = new Weather(); //到达城市天气
 
       /*   while (result.next()) {
             LOG.total++;
@@ -129,39 +129,35 @@ public class Main {
 */
 
 
-
-
-
-
             //验证航班
-           if (ValidData.validData(flight)) {
-                 LOG.actTrianData++;
+            if (ValidData.validData(flight)) {
+                LOG.actTrianData++;
                 /****前序航班到港****/
 
                 int adv_delays = 0;  //默认前序航班到港延误为0
 
-                String sql_advf = "SELECT * FROM tb_train WHERE TimeSeries = '"+flight.getTimeSeries()+"'"
-                        +" AND ArrAirport='"+flight.getDepAirport()+"'"
-                        +" AND Acft='"+flight.getAcft()+"'"
-                        +" AND ArrAirport = '"+flight.getDepAirport()+"'"
-                        +" AND (FlightNo= '"+flight.getCarrier()+(Integer.parseInt(flight.getFlightNoShort())-1)+"'"
-                        +" OR FlightNo= '"+flight.getFlightNo()+"')";
+                String sql_advf = "SELECT * FROM tb_train WHERE TimeSeries = '" + flight.getTimeSeries() + "'"
+                        + " AND ArrAirport='" + flight.getDepAirport() + "'"
+                        + " AND Acft='" + flight.getAcft() + "'"
+                        + " AND ArrAirport = '" + flight.getDepAirport() + "'"
+                        + " AND (FlightNo= '" + flight.getCarrier() + (Integer.parseInt(flight.getFlightNoShort()) - 1) + "'"
+                        + " OR FlightNo= '" + flight.getFlightNo() + "')";
 
                 PreparedStatement pst_advf = conn.prepareStatement(sql_advf);
                 ResultSet result_adv = pst_advf.executeQuery();
-                if(result_adv.next()) {
-                    Flight advf = new Flight(result_adv.getInt(1), result_adv.getString(2),result_adv.getString(3), result_adv.getString(4),
-                            result_adv.getString(5), result_adv.getString(6),result_adv.getString(7), result_adv.getString(8),
-                            result_adv.getString(9), result_adv.getString(10),result_adv.getString(11), result_adv.getString(12),
-                            result_adv.getString(13), result_adv.getString(14),result_adv.getString(15), result_adv.getString(16),
-                            result_adv.getString(17), result_adv.getString(18),result_adv.getString(19), result_adv.getString(20),
-                            result_adv.getString(21), result_adv.getString(22),result_adv.getString(23));
+                if (result_adv.next()) {
+                    Flight advf = new Flight(result_adv.getInt(1), result_adv.getString(2), result_adv.getString(3), result_adv.getString(4),
+                            result_adv.getString(5), result_adv.getString(6), result_adv.getString(7), result_adv.getString(8),
+                            result_adv.getString(9), result_adv.getString(10), result_adv.getString(11), result_adv.getString(12),
+                            result_adv.getString(13), result_adv.getString(14), result_adv.getString(15), result_adv.getString(16),
+                            result_adv.getString(17), result_adv.getString(18), result_adv.getString(19), result_adv.getString(20),
+                            result_adv.getString(21), result_adv.getString(22), result_adv.getString(23));
 
                     int adv = TimeUtil.timeMinus(advf.getArrTime(), flight.getDepTime());
 
-                    if(adv>29&&adv<200){
+                    if (adv > 29 && adv < 200) {
                         LOG.have_AdvFlight++;
-                        adv_delays =  TimeUtil.timeMinus(advf.getArrTime(), advf.getActArrTime());
+                        adv_delays = TimeUtil.timeMinus(advf.getArrTime(), advf.getActArrTime());
 
                     }
 
@@ -221,22 +217,22 @@ public class Main {
                     arr_weather.setDescription("0.0");
                     arr_weather.setWindir("0.0");
                     arr_weather.setWindstrength("微风"); // 为减小计算影响，这里设置为微风
-                    if(miss_w==0) miss_w = 2;
-                    if(miss_w==1) miss_w = 3;
+                    if (miss_w == 0) miss_w = 2;
+                    if (miss_w == 1) miss_w = 3;
 
                 }
                 pst_aw.close();
 
-                if(miss_w==1) LOG.miss_DepWeather++;
-                if(miss_w==2) LOG.miss_ArrWeather++;
-                if(miss_w==3) LOG.miss_Weather++;
+                if (miss_w == 1) LOG.miss_DepWeather++;
+                if (miss_w == 2) LOG.miss_ArrWeather++;
+                if (miss_w == 3) LOG.miss_Weather++;
 
                 /******* END *********/
 
                 /***** 调用CanData处理数据 ****/
                 canData.SetData(flight, dep_weather, arr_weather, adv_delays);
                 System.out.println(canData.toString());
-                bfwrite.write(canData.toString()+","+flight.getId());
+                bfwrite.write(canData.toString() + "," + flight.getId());
                 bfwrite.newLine();
                 bfwrite.flush();
             }//if
@@ -244,7 +240,7 @@ public class Main {
         }//while
         bfread.close();
 
-     //   pst.close();
+        //   pst.close();
         conn.close();
         LOG log = new LOG();
         System.out.print(log.toString());
