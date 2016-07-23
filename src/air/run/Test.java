@@ -28,17 +28,13 @@ import java.util.List;
  * 生成报表分析
  * 数据库air list_airtype表中存放机型对照表 list_airport存放机场对照表
  */
-public class Main {
+public class Test {
 
     //数据库配置文件
     public static final String url = "jdbc:mysql://localhost:3306/air";
     public static final String name = "com.mysql.jdbc.Driver";
     public static final String user = "root";
     public static final String password = "123";
-
-    public final static String read_path = "E:\\air\\SHA\\tb_flight.csv";
-
-    public final static String write_path = "E:\\air\\SHA\\flight-0721.csv";
 
     // 机型
     public final static List<String> AIRTYPE_List = new ArrayList<String>();
@@ -48,44 +44,27 @@ public class Main {
 
 
 
+
+
     public static void main(String args[]) throws ClassNotFoundException,
             SQLException, IOException {
 
 
         /******* 读取文件 ********/
-        BufferedReader bfread = new BufferedReader(new FileReader(read_path));
+        BufferedReader bfread = new BufferedReader(new FileReader("E:\\air\\SHA\\tb_flight.csv"));
 
         /******* 写入文件 ********/
-        BufferedWriter bfwrite = new BufferedWriter(new FileWriter(write_path));
+        BufferedWriter bfwrite = new BufferedWriter(new FileWriter("E:\\air\\SHA\\flight-0721.csv"));
 
-        /******* 连接数据库 ********/
-        Class.forName(name);// 指定连接类型
-        Connection conn = DriverManager.getConnection(url, user, password);// 获取连接
 
-        /******* 从数据库读取机型列表 AIRTYPE_List ********/
-        String sql_AIRTYPE = "SELECT * FROM list_airtype";
-
-        PreparedStatement pst_AIRTYPE = conn.prepareStatement(sql_AIRTYPE);
-
-        ResultSet r_AIRTYPE = pst_AIRTYPE.executeQuery();
-        while (r_AIRTYPE.next()) {
-            AIRTYPE_List.add(r_AIRTYPE.getString(1));
-        }
-        pst_AIRTYPE.close();
-
-        /********* 从数据库读取机场列表 AIRPORT_List ************/
-        String sql_AIRPORT = "SELECT * FROM list_airport";
-
-        PreparedStatement pst_AIRPORT = conn.prepareStatement(sql_AIRPORT);
-
-        ResultSet r_AIRPORT = pst_AIRPORT.executeQuery();
-        while (r_AIRPORT.next()) {
-            AIRPORT_List.add(r_AIRPORT.getString(1));
-        }
-        pst_AIRPORT.close();
 
         /************ 将List加载到CanData用于数据处理 **************/
         CanData canData = new CanData(AIRTYPE_List, AIRPORT_List);
+        Test test = new Test();
+        test.getChart();
+
+        Class.forName(name);// 指定连接类型
+        Connection conn = DriverManager.getConnection(url, user, password);// 获取连接
 
 
         Flight flight;  //一条航班数据
@@ -93,6 +72,7 @@ public class Main {
         String line=null;
 
         while ((line = bfread.readLine()) != null) {
+
 
             String[] item = line.split(",");
             System.out.println(item[0]);
@@ -109,6 +89,7 @@ public class Main {
                     item[20], item[21], item[22]
             );
             Log.total++;
+
 
             /**************** 数据查询 *******************/
 
@@ -150,7 +131,6 @@ public class Main {
 
                 }
                 pst_advf.close();
-
                 /**** 查询天气 ****/
 
                 // 0天气完整，1缺失出发城市天气，2缺失到达城市天气，3两地天气都缺失
@@ -221,7 +201,7 @@ public class Main {
 
                 /***** 调用CanData处理数据 ****/
                 canData.SetData(flight, dep_weather, arr_weather, adv_delays);
-                Temp.list_canData.add(canData.toString());
+//                Temp.list_canData.add(canData.toString());
                 System.out.println(canData.toString() + "," + flight.getId());
                 bfwrite.write(canData.toString() + "," + flight.getId());
                 bfwrite.newLine();
@@ -239,27 +219,58 @@ public class Main {
         System.out.print(log.toString());
         System.out.println("-----FINISH----");
 
-        outExcel();
+        //   outExcel();
 
 
     }
 
 
-    private static void outExcel() throws IOException {
+    private void outExcel() throws IOException {
         Excel excel = new Excel();
         String[] sheets = {"trainData","canData","incomplete_Data","unusual_Data","opCar_N_Data"};
         excel.createExcel(sheets);
-        List lists = new ArrayList<>();
-        lists.add(Temp.list_trainData);
-        lists.add(Temp.list_canData);
-        lists.add(Temp.list_incomplete_Data);
-        lists.add(Temp.list_unusual_Data);
-        lists.add(Temp.list_opCar_N_Data);
 
-
-        excel.superAddData(sheets,lists);
-
-
+      //  excel.superAddData("trainData",Temp.list_trainData);
+        //  Temp.list_trainData=null;
+      //  excel.superAddData("canData",Temp.list_canData);
+        //   Temp.list_canData=null;
+     //   excel.superAddData("incomplete_Data",Temp.list_incomplete_Data);
+        //   Temp.list_incomplete_Data=null;
+     //   excel.superAddData("unusual_Data",Temp.list_unusual_Data);
+        //   Temp.list_unusual_Data=null;
+     //   excel.superAddData("opCar_N_Data",Temp.list_opCar_N_Data);
+        //  Temp.list_opCar_N_Data=null;
         System.out.println("Excel表数据导入完成！");
+    }
+
+    private void getChart() throws ClassNotFoundException, SQLException {
+        /******* 连接数据库 ********/
+        Class.forName(name);// 指定连接类型
+        Connection conn = DriverManager.getConnection(url, user, password);// 获取连接
+
+        /******* 从数据库读取机型列表 AIRTYPE_List ********/
+        String sql_AIRTYPE = "SELECT * FROM list_airtype";
+
+        PreparedStatement pst_AIRTYPE = conn.prepareStatement(sql_AIRTYPE);
+
+        ResultSet r_AIRTYPE = pst_AIRTYPE.executeQuery();
+        while (r_AIRTYPE.next()) {
+            AIRTYPE_List.add(r_AIRTYPE.getString(1));
+        }
+        pst_AIRTYPE.close();
+
+        /********* 从数据库读取机场列表 AIRPORT_List ************/
+        String sql_AIRPORT = "SELECT * FROM list_airport";
+
+        PreparedStatement pst_AIRPORT = conn.prepareStatement(sql_AIRPORT);
+
+        ResultSet r_AIRPORT = pst_AIRPORT.executeQuery();
+        while (r_AIRPORT.next()) {
+            AIRPORT_List.add(r_AIRPORT.getString(1));
+        }
+        pst_AIRPORT.close();
+    }
+    private void getAdv_delays(){
+
     }
 }

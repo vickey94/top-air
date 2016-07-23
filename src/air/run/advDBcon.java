@@ -26,7 +26,6 @@ public class advDBcon {
 
     // 数据库配置文件
     public static final String url = "jdbc:mysql://localhost:3306/air";
-    ;
     public static final String name = "com.mysql.jdbc.Driver";
     public static final String user = "root";
     public static final String password = "123";

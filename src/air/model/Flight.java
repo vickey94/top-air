@@ -70,6 +70,32 @@ public class Flight {
     }
 
 
+    public String toString() {
+        return  this.id+","+
+        this.timeSeries+","+
+        this.flightNo+","+
+        this.carrier+","+
+        this.flightNoShort+","+
+        this.depAirport+","+
+        this.depCity+","+
+        this.arrAirport+","+
+        this.arrCity+","+
+        this.depTime+","+
+        this.arrTime+","+
+        this.arrday+","+
+        this.flyingTime+","+
+        this.actDepTime+","+
+        this.actArrTime+","+
+        this.actArrday+","+
+        this.actFlyingTime+","+
+        this.comment+","+
+        this.stops+","+
+        this.routing+","+
+        this.acft+","+
+        this.distKm+","+
+        this.opCar;
+    }
+
     public Integer getId() {
         return id;
     }
