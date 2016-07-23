@@ -5,4 +5,5 @@ package air.config;
  * 数据库配置文件
  */
 public class Config {
+
 }

@@ -1,6 +1,7 @@
 package air.util;
 
-import air.config.LOG;
+import air.config.Log;
+import air.config.Temp;
 import air.model.Flight;
 
 public class ValidData {
@@ -11,14 +12,16 @@ public class ValidData {
 
         String opCar = flight.getOpCar();
         if (opCar.equals("N")) {
-            LOG.opCar_N_Data++;
+            Log.opCar_N_Data++;
+            Temp.list_opCar_N_Data.add(flight.toString());
 
             return false;
         }
-        LOG.opCar_O_Data++;
+        Log.opCar_O_Data++;
 
         if (flight.getActDepTime().equals("")) {
-            LOG.miss_ActTime++;
+            Log.miss_ActTime++;
+            Temp.list_unusual_Data.add(flight.toString()+","+"miss_ActTime");
             return false;
         }
 
@@ -26,14 +29,16 @@ public class ValidData {
         String[] vali_comment = {"取消", "未知", "已備降", "已排班", "n/a", "正在滑行", "途中"};
         for (String str : vali_comment) {
             if (str.equals(comment)) {
-                LOG.unusual_Comment++;
+                Log.unusual_Comment++;
+                Temp.list_unusual_Data.add(flight.toString()+","+"unusual_Comment");
                 return false;
             }
         }
 
 
         if (TimeUtil.timeMinus(flight.getDepTime(), flight.getActDepTime()) < -30) {
-            LOG.unusual_ActDepTime++;
+            Log.unusual_ActDepTime++;
+            Temp.list_unusual_Data.add(flight.toString()+","+"unusual_ActDepTime");
 
             return false;
         }
@@ -43,14 +48,17 @@ public class ValidData {
         int actFlyTime = Integer.parseInt(flight.getActFlyingTime());
         int distKm = Integer.parseInt(flight.getDistKm());
         if (actFlyTime == 0) {
-            LOG.unusual_ActFlyTime++;
+            Log.unusual_ActFlyTime++;
+            Temp.list_unusual_Data.add(flight.toString()+","+"unusual_ActFlyTime");
             return false;
         }
         if ((distKm / actFlyTime) > 20) {
-            LOG.unusual_DistKm_ActFlyTime++;
+            Log.unusual_DistKm_ActFlyTime++;
+            Temp.list_unusual_Data.add(flight.toString()+","+"unusual_DistKm_ActFlyTime");
             return false;
         }
 
+        Temp.list_trainData.add(flight.toString());
         return true;
     }
 
@@ -88,47 +96,11 @@ public class ValidData {
         if (actFlyTime == 0) {
             return false;
         }
-        if (distKm / actFlyTime > 20) {
-            return false;
-        }
+        return distKm / actFlyTime <= 20;
 
-        return true;
     }
 
 
-    public static boolean validData(String comment) {
-
-//		String opCar = flight.getOpCar();
-        String[] vali_comment = {"取消", "未知", "已備降", "已排班", "n/a"};
-        for (String str : vali_comment) {
-            if (str.equals(comment)) {
-                return false;
-            }
-        }
-
-		
-		/*	if(opCar.equals("N"))
-			return false;
-		
-		if(TimeUtil.timeMinus(flight.getDepTime(),flight.getActDepTime())<-30)
-			return false;*/
-
-        return true;
-    }
-
-    public static boolean checkADVflight(Flight advf, Flight f) {
-
-        //	if(f.getAcft().equals(advf.getAcft())&&f.getDepAirport().equals(advf.getArrAirport())){
-        int adv = TimeUtil.timeMinus(advf.getArrTime(), f.getDepTime());
-
-        if (adv > 29 && adv < 200) {
-            return true;
-        }
-        //	}
-
-
-        return false;
-    }
 
     public static void main(String argsp[]) {
         Flight flight = new Flight();

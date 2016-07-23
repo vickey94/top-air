@@ -1,12 +1,11 @@
 package air.config;
 
 
-
 /**
  * Created by vickey on 2016/7/20.
  * 日志报表
  */
-public class LOG {
+public class Log {
 
     public static int total = 0;           //导入文件总数
 
@@ -35,19 +34,20 @@ public class LOG {
         return "文件总数为：" + total + "\n"
                 + "非实际航班：" + opCar_N_Data + "\n"
                 + "实际航班：" + opCar_O_Data + "\n"
-                + "----------------------------------\n"
+                + "--------------trainData----------------\n"
                 + "实际航班中实际训练航班数为：" + actTrianData + "\n"
                 + "有前序航班的航班数为：" + have_AdvFlight + "\n"
                 + "缺失两地天气航班数为：" + miss_Weather + "\n"
                 + "缺失出发城市天气航班数为：" + miss_DepWeather + "\n"
                 + "缺失到达城市天气航班数为：" + miss_ArrWeather + "\n"
-                + "----------------------------------\n"
+                + "---------------unusual----------------\n"
                 + "状态异常航班数为：" + unusual_Comment + "\n"
                 + "提前起飞太早航班数为：" + unusual_ActDepTime + "\n"
                 + "飞行速度异常航班数为：" + unusual_DistKm_ActFlyTime + "\n"
                 + "实际飞行时间为0航班数为：" + unusual_ActFlyTime + "\n"
-                + "----------------------------------\n"
                 + "缺少实际出发时间航班数为：" + miss_ActTime + "\n"
+                + "----------------------------------\n"
+
                 ;
     }
 }
