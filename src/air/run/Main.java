@@ -234,7 +234,6 @@ public class Main {
         bfwrite.close();
         conn.close();
 
-
         Log log = new Log();
         System.out.print(log.toString());
         System.out.println("-----FINISH----");
@@ -256,9 +255,7 @@ public class Main {
         lists.add(Temp.list_unusual_Data);
         lists.add(Temp.list_opCar_N_Data);
 
-
         excel.superAddData(sheets,lists);
-
 
         System.out.println("Excel表数据导入完成！");
     }
